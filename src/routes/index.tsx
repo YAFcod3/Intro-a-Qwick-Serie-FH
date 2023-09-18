@@ -3,7 +3,12 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import { PokemonImage } from "~/components/pokemons/pokemon-image";
 
 export default component$(() => {
+
+
+
   const  showBackImage=useSignal(false)
+  const  isPokemonVisible =useSignal(false)
+
   const pokemonId = useSignal(1); //state tipo signals para primitivos /number/string/boolean..
   // const pokemon2=useStore()   //state para compuestos / array ,object ...
 
@@ -22,13 +27,12 @@ export default component$(() => {
 
 
 
-
   return (
     <>
       <span class="text-2xl">Buscador simple</span>
       <span class="text-9xl">{pokemonId}</span>
 
-      <PokemonImage id={pokemonId.value} size={100} backImage={showBackImage.value}/>
+      <PokemonImage id={pokemonId.value} size={100} backImage={showBackImage.value} isPokemonVisible={isPokemonVisible.value}/>
 
       <div class="mt-2">
         <button class="btn btn-primary" onClick$={()=>changePokemon(-1)}>
@@ -39,6 +43,9 @@ export default component$(() => {
         </button>
         <button class="btn btn-primary" onClick$={() =>showBackImage.value= !showBackImage.value}>
           Voltear
+        </button>
+        <button class="btn btn-primary"    onClick$={() =>isPokemonVisible.value= !isPokemonVisible.value} >
+          Revelar
         </button>
       </div>
     </>
